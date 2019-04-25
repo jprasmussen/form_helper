@@ -1,0 +1,9 @@
+
+form_helper.default_form:
+  path: '/helper/form/default'
+  defaults:
+    _form: '\Drupal\form_helper\Form\DefaultForm'
+    _title: 'Default Form'
+  requirements:
+    _access: 'TRUE'
+  

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains form_helper.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function form_helper_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the form_helper module.
+    case 'help.page.form_helper':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A module that displays a form for testing and styling a site in dev.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
