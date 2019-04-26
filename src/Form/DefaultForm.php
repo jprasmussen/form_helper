@@ -22,10 +22,17 @@ class DefaultForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['text_input'] = [
+    $form['textfield'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Text Input'),
       '#description' => $this->t('This is a text input'),
+      '#maxlength' => 64,
+      '#size' => 64,
+    ];
+    $form['textfield_validate'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Text input that will not validate'),
+      '#description' => $this->t('This is a text input that will fail on submit'),
       '#maxlength' => 64,
       '#size' => 64,
     ];
@@ -39,14 +46,31 @@ class DefaultForm extends FormBase {
       '#title' => $this->t('Email'),
       '#description' => $this->t('An email input'),
     ];
-    $form['single_checkbox'] = [
+    $form['checkbox'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Single checkbox'),
+      '#title' => $this->t('A checkbox'),
+    ];
+    $form['checkboxes'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('A checkbox list'),
+      '#options' => [
+        'one' => 'One',
+        'two' => 'Two',
+        'Three' => 'Three',
+      ]
     ];
     $form['radio'] = [
       '#type' => 'radio',
       '#title' => $this->t('A radio'),
-      '#weight' => '0',
+    ];
+    $form['radios'] = [
+      '#type' => 'radio',
+      '#title' => $this->t('A radio list'),
+      '#options' => [
+        'one' => 'One',
+        'two' => 'Two',
+        'Three' => 'Three',
+      ]
     ];
     $form['textarea'] = [
       '#type' => 'textarea',
@@ -64,7 +88,7 @@ class DefaultForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    parent::validateForm($form, $form_state);
+    $form_state->setErrorByName('textfield_validate', $this->t('Oooops, you can not submit this form.'));
   }
 
   /**
